@@ -44,15 +44,23 @@ app.post('/notifications', function (req, res, next) {
     console.log(req.body);
     console.log("************************FIN WEBHOOK************************")
 
-    console.log("**************************JSON PAGO**************************")
-    mercadopago.payment.search(req.body.id)
-        .then(function (response) {
-            console.log(response.body);
+    // let filtros={
+    //     range: req.body.date_created
+    //     begin_date: 'NOW-1MONTH',
+    //     end_date: 'NOW',
+    //     status: 'approved',
+    //     operation_type: 'regular_payment'
+    // }
+    mercadopago.payment.search(req.body.data.id)
+    .then(function (response) {
+            console.log("**************************JSON PAGO**************************")
+            console.log(response);
+            console.log("************************FIN JSON PAGO************************")
         })
         .catch(function (error) {
+            console.log("################----ERROR RECUPEANDO PAGO----################");
             console.log(error);
         });
-    console.log("************************FIN JSON PAGO************************")
 
     res.sendStatus(201);
 });
