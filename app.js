@@ -47,7 +47,7 @@ app.post('/notifications', function (req, res, next) {
     console.log("**************************JSON PAGO**************************")
     mercadopago.payment.search(req.body.id)
         .then(function (response) {
-            console.log(response);
+            console.log(response.body);
         })
         .catch(function (error) {
             console.log(error);
