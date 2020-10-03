@@ -30,17 +30,12 @@ app.get('/detail', function (req, res) {
 });
 
 app.get('/failure', function (req, res) {
-    //res.send("fallo");
     res.render('status', req.query);
-    //res.render('detail', req.query);
 });
 app.get('/pending', function (req, res) {
-    //res.send("pendiente");
     res.render('status', req.query);
-    //res.render('detail', req.query);
 });
 app.get('/aproved', function (req, res) {
-    //res.send(req);
     res.render('status', req.query);
 });
 
@@ -66,8 +61,11 @@ app.post('/notifications', function (req, res, next) {
     //     res.send(fileData);
     //     next();
     // });
-    console.log("hola");
+    console.log("**************************WEBHOOK**************************")
+    console.log(req.body);
+    console.log("************************FIN WEBHOOK************************")
     res.sendStatus(201);
+    //res.json(req.body);
 });
 
 app.post('/iniciar_pago', function(req, res){
