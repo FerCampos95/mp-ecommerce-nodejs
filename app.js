@@ -40,32 +40,21 @@ app.get('/aproved', function (req, res) {
 });
 
 app.post('/notifications', function (req, res, next) {
-    // let info = req.body;
-    // fs.readFile('notifications.json', 'utf8', function(e, fileData){
-    //     if (e) {
-    //         res.status(401);
-    //         res.send({e});
-    //         next();
-    //     }
-    //     try {
-    //         fileData = JSON.parse(fileData);
-    //     } catch(e) {
-    //         console.error(e);
-    //         fileData = [];
-    //     }
-
-    //     fileData.push(info);
-    //     fileData = JSON.stringify(fileData);
-
-    //     fs.writeFileSync('notifications.json', fileData, 'utf8');
-    //     res.send(fileData);
-    //     next();
-    // });
     console.log("**************************WEBHOOK**************************")
     console.log(req.body);
     console.log("************************FIN WEBHOOK************************")
+
+    console.log("**************************JSON PAGO**************************")
+    mercadopago.payment.get(req.body.id)
+        .then(function (response) {
+            console.log(response);
+        })
+        .catch(function (error) {
+            console.log(error);
+        });
+    console.log("************************FIN JSON PAGO************************")
+
     res.sendStatus(201);
-    //res.json(req.body);
 });
 
 app.post('/iniciar_pago', function(req, res){
@@ -115,7 +104,6 @@ app.post('/iniciar_pago', function(req, res){
                 }
             ],
             installments: 6,
-            //default_installments: 6 
         },
     };
 
@@ -137,11 +125,9 @@ app.post('/iniciar_pago', function(req, res){
             console.log(global.init_point);
             res.redirect(global.init_point);
             
-
         }).catch(function (error) {
             console.log(error);
         });
-
 });
 
 app.use(express.static('assets'));
