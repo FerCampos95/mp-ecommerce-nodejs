@@ -44,17 +44,21 @@ app.post('/notifications', function (req, res, next) {
     console.log(req.body);
     console.log("************************FIN WEBHOOK************************")
 
-    let idPago=req.body.data.id;
-    console.log("--------------------------El ID de pago es: "+ idPago);
-    // let filtros={
-    //     range: req.body.date_created
-    //     begin_date: 'NOW-1MONTH',
-    //     end_date: 'NOW',
-    //     status: 'approved',
-    //     operation_type: 'regular_payment'
-    // }
-    if(idPago){
-        mercadopago.payment.search(idPago)
+    // let idPago=req.body.data.id;
+    // console.log("--------------------------El ID de pago es: "+ idPago);
+    
+    if(req.body){
+        let filtros={
+            range: req.body.date_created,
+            begin_date: 'NOW-1MONTH',
+            end_date: 'NOW',
+            status: 'approved',
+            operation_type: 'regular_payment'
+        }
+    
+        mercadopago.payment.search(
+            { qs: filtros}
+        )
             .then(function (response) {
                 console.log("**************************JSON PAGO**************************")
                 console.log(response.body);
