@@ -45,7 +45,7 @@ app.post('/notifications', function (req, res, next) {
     console.log("************************FIN WEBHOOK************************")
 
     console.log("**************************JSON PAGO**************************")
-    mercadopago.payment.get(req.body.id)
+    mercadopago.payment.search(req.body.id)
         .then(function (response) {
             console.log(response);
         })
