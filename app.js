@@ -44,32 +44,34 @@ app.post('/notifications', function (req, res, next) {
     console.log(req.body);
     console.log("************************FIN WEBHOOK************************")
 
-    // let idPago=req.body.data.id;
-    // console.log("--------------------------El ID de pago es: "+ idPago);
-    
-    if(req.body){
-        let filtros={
-            range: req.body.date_created,
-            begin_date: 'NOW-1MONTH',
-            end_date: 'NOW',
-            status: 'approved',
-            operation_type: 'regular_payment'
-        }
-    
-        mercadopago.payment.search(
-            { qs: filtros}
-        )
-            .then(function (response) {
-                console.log("**************************JSON PAGO**************************")
-                console.log(response.body);
-                console.log("************************FIN JSON PAGO************************")
-                res.sendStatus(200);
-            })
-            .catch(function (error) {
-                console.log("################----ERROR RECUPEANDO PAGO----################");
-                console.log(error);
-            });
+    let idPago=req.body.data.id;
+    if(idPago){
+        console.log("--------------------------El ID de pago es: "+ idPago);
     }
+    
+    // if(req.body){
+    //     let filtros={
+    //         range: req.body.date_created,
+    //         begin_date: 'NOW-1MONTH',
+    //         end_date: 'NOW',
+    //         status: 'approved',
+    //         operation_type: 'regular_payment'
+    //     }
+    
+    //     mercadopago.payment.search(
+    //         { qs: filtros}
+    //     )
+    //         .then(function (response) {
+    //             console.log("**************************JSON PAGO**************************")
+    //             console.log(response.body);
+    //             console.log("************************FIN JSON PAGO************************")
+    //             res.sendStatus(200);
+    //         })
+    //         .catch(function (error) {
+    //             console.log("################----ERROR RECUPEANDO PAGO----################");
+    //             console.log(error);
+    //         });
+    // }
 
     res.sendStatus(201);
 });
