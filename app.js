@@ -53,16 +53,19 @@ app.post('/notifications', function (req, res, next) {
     //     status: 'approved',
     //     operation_type: 'regular_payment'
     // }
-    mercadopago.payment.search(idPago)
-    .then(function (response) {
-            console.log("**************************JSON PAGO**************************")
-            console.log(response.body);
-            console.log("************************FIN JSON PAGO************************")
-        })
-        .catch(function (error) {
-            console.log("################----ERROR RECUPEANDO PAGO----################");
-            console.log(error);
-        });
+    if(idPago){
+        mercadopago.payment.search(idPago)
+            .then(function (response) {
+                console.log("**************************JSON PAGO**************************")
+                console.log(response.body);
+                console.log("************************FIN JSON PAGO************************")
+                res.sendStatus(200);
+            })
+            .catch(function (error) {
+                console.log("################----ERROR RECUPEANDO PAGO----################");
+                console.log(error);
+            });
+    }
 
     res.sendStatus(201);
 });
