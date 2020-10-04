@@ -11,3 +11,17 @@
     type: 'payment',
     user_id: '469485398'
   }
+
+
+  {
+    action: 'payment.created',
+    api_version: 'v1',
+    data: {
+      id: '10476570641'
+    },
+    date_created: '2020-10-04T02:05:46Z',
+    id: 6504623840,
+    live_mode: true,
+    type: 'payment',
+    user_id: '469485398'
+  }

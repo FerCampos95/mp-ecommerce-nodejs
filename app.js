@@ -79,12 +79,13 @@ app.post('/notifications', function (req, res, next) {
 app.post('/iniciar_pago', function(req, res){
 
     // Crea un objeto de preferencia
+
     let preference = {
         items: [{
             id: 1234,
             title: req.body.title,
             description: "Dispositivo móvil de Tienda e-commerce",
-            picture_url: req.body.img,
+            picture_url: datos.urlApp+req.body.img,
             quantity: 1,
             unit_price: Number(req.body.price),
             external_reference: "fernandoc@epidataconsulting.com",
@@ -99,7 +100,7 @@ app.post('/iniciar_pago', function(req, res){
                 number: 22223333,
             },
             address:{
-                street_name: "false",
+                street_name: "False",
                 street_number: 123,
                 zip_code: "1111",
             },
