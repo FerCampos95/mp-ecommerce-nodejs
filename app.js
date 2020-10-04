@@ -87,9 +87,9 @@ app.post('/iniciar_pago', function(req, res){
             picture_url: req.body.img,
             quantity: 1,
             unit_price: Number(req.body.price),
-            external_reference: "fer_eze_jose@hotmail.com",
+            external_reference: "fernandoc@epidataconsulting.com",
         }],
-        external_reference: "fer_eze_jose@hotmail.com",
+        external_reference: "fernandoc@epidataconsulting.com",
         payer:{
             name: "Lalo",
             surname: "Landa",
